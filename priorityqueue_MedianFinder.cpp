@@ -7,39 +7,43 @@ using namespace std;
 #include <iostream>
 #include <queue>
 
-class UndergroundSystem {
+class MedianFinder {
+private:
+	priority_queue<int> first;//largest on top
+	priority_queue<int,vector<int>, greater<int> > second; //smallest on top
 public:
-    UndergroundSystem() {
+    /** initialize your data structure here. */
+    MedianFinder() {}
 
+    void addNum(int num) {
+    	if(first.empty() || first.top() > num) first.push(num);
+    	else second.push(num);
+    	if(first.size() > second.size() + 1){
+    		second.push(first.top());
+    		first.pop();
+    	}
+    	if(second.size() > first.size() + 1){
+    		first.push(second.top());
+    		second.pop();
+    	}
     }
 
-    void checkIn(int id, string stationName, int t) {
-
-    }
-
-    void checkOut(int id, string stationName, int t) {
-
-    }
-
-    double getAverageTime(string startStation, string endStation) {
+    double findMedian() {
+    	if(first.empty() && second.empty()) return 0;
+    	if(first.size() == second.size()) return (first.top() + second.top())/2.0;
+    	else return first.size()>second.size()? first.top(): second.top();
 
     }
 };
 
+
 int main()
 {
-	UndergroundSystem s;
-	s.checkIn(45, "Leyton", 3);
-	s.checkIn(32, "Paradise", 8);
-	s.checkIn(27, "Leyton", 10);
-	s.checkOut(45, "Waterloo", 15);
-	s.checkOut(27, "Waterloo", 20);
-	s.checkOut(32, "Cambridge", 22);
-	cout<<s.getAverageTime("Paradise", "Cambridge")<<endl;
-	s.checkIn(10, "Leyton", 24);
-	cout<<s.getAverageTime("Leyton", "Waterloo")<<endl;
-	s.checkOut(10, "Waterloo", 38);
-	cout<<s.getAverageTime("Leyton", "Waterloo")<<endl;
-
+	MedianFinder f;
+	f.addNum(1);
+	f.addNum(2);
+	cout<<f.findMedian()<<endl;
+	f.addNum(3);
+	cout<<f.findMedian()<<endl;
 	return 0;
 }
