@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : map_productExceptSelf.cpp
+// Name        : map_lengthOfLongestSubstring.cpp
 // Author      : Jenny Cheng
 // Copyright   : Your copyright notice
 //============================================================================
