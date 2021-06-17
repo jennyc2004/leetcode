@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : map_MyHashMap.cpp
+// Name        : dp_coinChange.cpp
 // Author      : Jenny Cheng
 // Copyright   : Your copyright notice
 //============================================================================
